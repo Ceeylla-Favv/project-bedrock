@@ -1,0 +1,11 @@
+terraform.tfvars
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+*.log
+*.backup
+*.zip
+*.tar.gz
+*.tfplan
+*.tfvars.json
