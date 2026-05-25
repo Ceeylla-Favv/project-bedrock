@@ -1,0 +1,43 @@
+# Retail Store Sample App - Custom Values
+# Overrides default chart to use managed AWS services
+
+# Disable in-cluster databases
+mysql:
+  enabled: false
+
+postgresql:
+  enabled: false
+
+# Catalog service - points to RDS MySQL
+catalog:
+  db:
+    endpoint: bedrock-mysql.cgbugia2svge.us-east-1.rds.amazonaws.com
+    user: admin
+    name: retailstore
+    passwordSecret:
+      name: db-credentials
+      key: mysql-password
+
+# Orders service - points to RDS PostgreSQL  
+orders:
+  db:
+    endpoint: bedrock-postgres.cgbugia2svge.us-east-1.rds.amazonaws.com
+    user: dbadmin
+    name: retailstore
+    passwordSecret:
+      name: db-credentials
+      key: postgres-password
+
+# Carts service - points to DynamoDB
+carts:
+  dynamodb:
+    enabled: true
+    tableName: bedrock-retail-catalog
+    region: us-east-1
+
+# In-cluster services (kept as default)
+rabbitmq:
+  enabled: true
+
+redis:
+  enabled: true
