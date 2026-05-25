@@ -58,7 +58,7 @@ resource "aws_db_instance" "postgres" {
   instance_class       = "db.t3.micro"
   allocated_storage    = 20
   db_name              = "retailstore"
-  username             = "admin"
+  username             = "dbadmin"
   password             = var.db_password
   db_subnet_group_name = aws_db_subnet_group.main.name
   vpc_security_group_ids = [aws_security_group.rds.id]
@@ -70,8 +70,8 @@ resource "aws_db_instance" "postgres" {
 
 # Store credentials in Secrets Manager
 resource "aws_secretsmanager_secret" "db_credentials" {
-  name = "project-bedrock/db-credentials"
-  tags = var.tags
+  name                    = "project-bedrock/db-credentials-v2"
+  recovery_window_in_days = 0
 }
 
 resource "aws_secretsmanager_secret_version" "db_credentials" {

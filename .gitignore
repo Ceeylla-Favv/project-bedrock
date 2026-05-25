@@ -8,4 +8,4 @@ terraform.tfvars
 *.zip
 *.tar.gz
 *.tfplan
-*.tfvars.json
+*.tfvars.jsonterraform.tfvars
