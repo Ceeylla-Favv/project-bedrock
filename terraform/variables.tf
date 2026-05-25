@@ -25,4 +25,4 @@ variable "tags" {
   default = {
     Project = "karatu-2025-capstone"
   }
-}
+}# pipeline test
