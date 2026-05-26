@@ -24,4 +24,4 @@ spec:
             name: ui
             port:
               number: 80
-#testing
+#  - host: api.innovatemart-inc.duckdns.org
