@@ -4,14 +4,18 @@ metadata:
   name: retail-store-ingress
   namespace: retail-app
   annotations:
-    kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/subnets: subnet-04f5f7e8963ad7a9a, subnet-056c6e36171d89dfe
+    alb.ingress.kubernetes.io/subnets: subnet-04f5f7e8963ad7a9a,subnet-056c6e36171d89dfe
     alb.ingress.kubernetes.io/tags: Project=karatu-2025-capstone
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:904233100204:certificate/88084d77-1222-498f-b356-89ca9267f507
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
+  ingressClassName: alb
   rules:
-  - http:
+  - host: innovatemart-inc.duckdns.org
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -20,3 +24,4 @@ spec:
             name: ui
             port:
               number: 80
+#testing
