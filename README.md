@@ -69,7 +69,7 @@ Region: us-east-1
 ---
 
 ## Repository Structure
-
+```
 project-bedrock/  
 ├── terraform/  
 │   ├── main.tf  
@@ -97,7 +97,7 @@ project-bedrock/
 │       └── terraform.yml  
 ├── grading.json  
 └── README.md  
-
+```
 ---
 
 ## Infrastructure Deployment
