@@ -54,18 +54,18 @@ A production-grade microservices deployment on AWS EKS for InnovateMart Inc., pr
 ## Prerequisites
 
 Install required tools:
-
+```
 aws --version  
 terraform --version  
 kubectl version --client  
 eksctl version  
 helm version  
-
+```
 Configure AWS credentials:
-
+```
 aws configure  
 Region: us-east-1  
-
+```
 ---
 
 ## Repository Structure
@@ -103,7 +103,7 @@ project-bedrock/
 ## Infrastructure Deployment
 
 ### Create Remote State Bucket
-
+```
 aws s3api create-bucket \
   --bucket project-bedrock-tfstate-YOUR_ACCOUNT_ID \
   --region us-east-1
@@ -111,7 +111,7 @@ aws s3api create-bucket \
 aws s3api put-bucket-versioning \
   --bucket project-bedrock-tfstate-YOUR_ACCOUNT_ID \
   --versioning-configuration Status=Enabled
-
+```
 ---
 
 ### Configure Variables
@@ -124,37 +124,37 @@ db_password = "Password"
 ---
 
 ### Deploy Infrastructure
-
+```
 cd terraform  
 terraform init  
 terraform plan -var-file="terraform.tfvars"  
 terraform apply -var-file="terraform.tfvars" -auto-approve  
-
+```
 ---
 
 ### Connect kubectl
-
+```
 aws eks update-kubeconfig \
   --region us-east-1 \
   --name project-bedrock-cluster  
 
 kubectl get nodes  
-
+```
 ---
 
 ## Application Deployment
 
 ### Install AWS Load Balancer Controller
-
+```
 eksctl utils associate-iam-oidc-provider \
   --region us-east-1 \
   --cluster project-bedrock-cluster \
   --approve  
-
+```
 ---
 
 ### Deploy Application
-
+```
 kubectl create namespace retail-app  
 
 helm upgrade --install retail-store \
@@ -162,14 +162,14 @@ helm upgrade --install retail-store \
   --namespace retail-app \
   --values helm/values.yaml \
   --wait --timeout 10m  
-
+```
 ---
 
 ### Apply Kubernetes Manifests
-
+```
 kubectl apply -f k8s/manifests/ingress.yaml  
 kubectl apply -f k8s/manifests/rbac.yaml  
-
+```
 ---
 
 ## CI/CD Pipeline
@@ -189,13 +189,13 @@ DB_PASSWORD
 ## Developer Access
 
 IAM user: bedrock-dev-view  
-
+```
 aws eks update-kubeconfig \
   --region us-east-1 \
   --name project-bedrock-cluster  
 
 kubectl get pods -n retail-app  
-
+```
 ---
 
 ## Observability
@@ -224,27 +224,27 @@ http://innovatemart-inc.duckdns.org
 ## Cost Management
 
 ### Scale Down
-
+```
 aws eks update-nodegroup-config \
   --cluster-name project-bedrock-cluster \
   --nodegroup-name project-bedrock-cluster-nodes \
   --scaling-config minSize=0,maxSize=4,desiredSize=0  
-
+```
 ### Scale Up
-
+```
 aws eks update-nodegroup-config \
   --cluster-name project-bedrock-cluster \
   --nodegroup-name project-bedrock-cluster-nodes \
   --scaling-config minSize=2,maxSize=4,desiredSize=4  
-
+```
 ---
 
 ## Tear Down
-
+```
 kubectl delete namespace retail-app  
 cd terraform  
 terraform destroy -var-file="terraform.tfvars" -auto-approve  
-
+```
 ---
 
 ## Tags
