@@ -40,6 +40,8 @@ A production-grade microservices deployment on AWS EKS for InnovateMart Inc., pr
 | Lambda | Python 3.12 | bedrock-asset-processor |
 | Domain | DuckDNS | innovatemart-inc.duckdns.org |
 
+![alt text](architecture.png)
+
 ### Network Layout
 
 - 2 public subnets across AZ-1 and AZ-2 (10.0.0.0/24, 10.0.1.0/24)
