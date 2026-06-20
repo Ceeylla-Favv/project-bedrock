@@ -6,9 +6,9 @@ metadata:
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/subnets: subnet-04f5f7e8963ad7a9a,subnet-056c6e36171d89dfe
+    alb.ingress.kubernetes.io/subnets: subnet-06eeb095ee9e07908,subnet-0c147e9a3b03885f5
     alb.ingress.kubernetes.io/tags: Project=karatu-2025-capstone
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:904233100204:certificate/88084d77-1222-498f-b356-89ca9267f507
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:977145922444:certificate/3ffc616b-db2c-4943-bd4f-542c8d93381c
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
@@ -24,4 +24,3 @@ spec:
             name: ui
             port:
               number: 80
-#  - host: api.innovatemart-inc.duckdns.org
